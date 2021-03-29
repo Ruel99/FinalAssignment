@@ -28,9 +28,9 @@ public class Note {
 Scanner sc = new Scanner(System.in);
 
     File file = new File("NotePad"); // creates a file named NotePad
+
+    // this function is used to add notes to the NotePad file
     void addNotes(Note arr[]){
-
-
         for(int i = 0; i < arr.length; i++){
             System.out.println("Please enter the name of the author of this note");
             String author = sc.nextLine();
@@ -49,7 +49,7 @@ Scanner sc = new Scanner(System.in);
                 if(!file.exists()){
                     file.createNewFile();
                 }
-
+                             // BufferedWriter allows the ability to write to file
                 BufferedWriter buffer = new BufferedWriter(new FileWriter(file, true));
                 buffer.write(author);
                 buffer.write(date);
@@ -64,7 +64,7 @@ Scanner sc = new Scanner(System.in);
         }//end of for loop
     }//end of add notes
 
-
+    //this function is used to display all the notes in the file
     void displayNotes(Note arr[]){
         for(int i = 0; i < arr.length; i++){
             try{
@@ -74,7 +74,7 @@ Scanner sc = new Scanner(System.in);
 
                 BufferedReader br = new BufferedReader(new FileReader(file));
                 int j;
-                while((j = br.read()) != -1){
+                while((j = br.read()) != -1){ // this while loop is used to print out the notes
                     System.out.print((char)j);
                 }//end of while loop
                 br.close();
@@ -85,7 +85,7 @@ Scanner sc = new Scanner(System.in);
         }//end of for loop
     }//end of display notes
 
-
+    //this function is used to remove a note form the file
     void removeNotes(Note arr[]){
         Note temp;
         System.out.println("Are you sure you want to remove a note, if yes enter 'y' if no enter 'n'.");
@@ -95,6 +95,7 @@ Scanner sc = new Scanner(System.in);
             System.out.println("Please enter the number of the note, whether if it is the first, second etc..");
             int noteNum = sc.nextInt();
 
+// in this for loop when i and the user input is equal it shifts all the elements after i to the left
             for(int i = noteNum; i < arr.length-1; i++){
                 arr[i] = arr[i+1];
             }
